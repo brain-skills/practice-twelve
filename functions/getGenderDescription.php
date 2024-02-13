@@ -33,7 +33,3 @@
         $result .= "Неопределённый состав: $undefinedPercentage%";
         return $result;
     }
-    // Выводим на экран
-    echo '<h3>4) Определение возрастно-полового состава:</h3>';
-    echo getGenderDescription($example_persons_array);
-    echo '<br><br>';

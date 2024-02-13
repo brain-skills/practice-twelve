@@ -34,16 +34,3 @@
             return 0; // Неопределённый пол
         }
     }
-    // Получаем пол
-    $gender = getGenderFromName($fullname);
-    // Выводим на экран
-    echo '<h3>3) Определяем пол по ФИО:</h3>';
-    echo 'Определенный пол: ';
-    if ($gender === 1) {
-        echo 'Мужской';
-    } elseif ($gender === -1) {
-        echo 'Женский';
-    } else {
-        echo 'Неопределённый';
-    }
-    echo '<br><br>';
