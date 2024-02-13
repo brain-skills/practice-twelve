@@ -7,18 +7,21 @@
         $patronomyc = mb_convert_case($patronomyc, MB_CASE_TITLE);
         // Склеиваем ФИО
         $fullFIO = getFullnameFromParts($surname, $name, $patronomyc);
-        // Выбираем случайного человека из массива
-        do {
+
+        $gender = 0;
+        $partnerGender = 0;
+
+        while($partnerGender == 0 || $gender == 0){
+            $gender = getGenderFromName($fullFIO);
             $randomIndex = rand(0, count($personsArray) - 1);
             $partnerFIO = $personsArray[$randomIndex]['fullname'];
             $partnerGender = getGenderFromName($partnerFIO);
-            // Определяем пол
-            $gender = getGenderFromName($fullFIO);
-        } while ($partnerGender == $gender || $partnerGender == 0);
+        }
+
         // Рассчитываем процент совместимости
         $compatibilityPercentage = mt_rand(5000, 10000) / 100;
         // Формируем строку с результатами
-        $result = "{$name} {$patronomyc} + " . getPartsFromFullname($partnerFIO)['name'] . ' ' . getPartsFromFullname($partnerFIO)['patronomyc'] . " = \n";
+        $result = "{$name} {$patronomyc}" . " + " . getPartsFromFullname($partnerFIO)['name'] . ' ' . getPartsFromFullname($partnerFIO)['patronomyc'] . " = \n";
         $result .= "♡ Идеально на {$compatibilityPercentage}% ♡";
         return $result;
     }
