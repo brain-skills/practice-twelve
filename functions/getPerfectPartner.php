@@ -16,12 +16,15 @@
             $randomIndex = rand(0, count($personsArray) - 1);
             $partnerFIO = $personsArray[$randomIndex]['fullname'];
             $partnerGender = getGenderFromName($partnerFIO);
+            if($gender == 0){
+                return "Не удалось определить пол первого человека";
+            }
         }
 
         // Рассчитываем процент совместимости
         $compatibilityPercentage = mt_rand(5000, 10000) / 100;
         // Формируем строку с результатами
-        $result = "{$name} {$patronomyc}" . " + " . getPartsFromFullname($partnerFIO)['name'] . ' ' . getPartsFromFullname($partnerFIO)['patronomyc'] . " = \n";
+        $result = getShortName($fullFIO) . " + " . getShortName($partnerFIO) . " = \n";
         $result .= "♡ Идеально на {$compatibilityPercentage}% ♡";
         return $result;
     }
